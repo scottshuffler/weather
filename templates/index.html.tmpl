@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <div class="container" style="margin-top: 20px">
+      <div class="tile is-ancestor">
+        <div class="tile is-vertical is-6">
+          <div class="tile">
+            <div class="tile is-parent is-vertical">
+              <article class="tile is-child notification is-primary">
+                <p class="title">temperature</p>
+                <p class="subtitle">{{.air.Temperature}}°C</p>
+              </article>
+              <article class="tile is-child notification is-info">
+                <p class="title">pressure</p>
+                <p class="subtitle">{{.air.Pressure}}hPa</p>
+              </article>
+            </div>
+          </div>
+        </div>
+        <div class="tile is-vertical is-6">
+          <div class="tile">
+            <div class="tile is-parent is-vertical">
+              <article class="tile is-child notification is-warning">
+                <p class="title">humidity</p>
+                <p class="subtitle">{{.air.Humidity}}%</p>
+              </article>
+              <article class="tile is-child notification is-success">
+                <p class="title">dewpoint</p>
+                <p class="subtitle">{{.air.Dewpoint}}</p>
+              </article>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="tile is-parent">
+          <div class="tile">
+            <div class="tile is-parent is-vertical">
+              <article class="tile is-child notification">
+                <div class="content">last updated {{.air.Time}} ({{ .air.TimeSince }} ago)</div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
