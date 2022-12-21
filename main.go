@@ -14,7 +14,7 @@ import (
 )
 
 //go:embed templates/*
-var resources embed.FS
+var t embed.FS
 
 type Air struct {
 	Timestamp   time.Time
@@ -27,20 +27,22 @@ type Air struct {
 	Dewpoint    float32
 }
 
-var t = template.Must(template.ParseFS(resources, "templates/*"))
+func init() {
+	gin.SetMode(gin.ReleaseMode)
+}
 
 func main() {
-	router := gin.Default()
-	templ := template.Must(template.New("").ParseFS(resources, "templates/*.tmpl"))
-	router.SetHTMLTemplate(templ)
-
-	router.GET("/", func(c *gin.Context) {
+	r := gin.Default()
+	templ := template.Must(template.New("").ParseFS(t, "templates/*.tmpl"))
+	r.SetHTMLTemplate(templ)
+	r.SetTrustedProxies(nil) // disable trusted proxies
+	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html.tmpl", gin.H{
 			"air": getSomeAir(),
 		})
 	})
 
-	router.Run(":8080")
+	r.Run(":8080")
 }
 
 func getSomeAir() Air {
