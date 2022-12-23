@@ -8,48 +8,72 @@
   </head>
   <body>
     <div class="container" style="margin-top: 20px">
+
       <div class="tile is-ancestor">
-        <div class="tile is-vertical is-6">
-          <div class="tile">
-            <div class="tile is-parent is-vertical">
-              <article class="tile is-child notification is-primary">
-                <p class="title">temperature</p>
-                <p class="subtitle">{{.air.Temperature}}°C</p>
-              </article>
-              <article class="tile is-child notification is-info">
-                <p class="title">pressure</p>
-                <p class="subtitle">{{.air.Pressure}}hPa</p>
-              </article>
-            </div>
-          </div>
-        </div>
-        <div class="tile is-vertical is-6">
-          <div class="tile">
-            <div class="tile is-parent is-vertical">
-              <article class="tile is-child notification is-warning">
-                <p class="title">humidity</p>
-                <p class="subtitle">{{.air.Humidity}}%</p>
-              </article>
-              <article class="tile is-child notification is-success">
-                <p class="title">dewpoint</p>
-                <p class="subtitle">{{.air.Dewpoint}}</p>
-              </article>
-            </div>
-          </div>
-        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-primary ">
+            <p class="title">{{.air.Temperature}}°C</p>
+            <p class="subtitle">temperature</p>
+          </article>
         </div>
         <div class="tile is-parent">
-          <div class="tile">
-            <div class="tile is-parent is-vertical">
-              <article class="tile is-child notification">
-                <div class="content">last updated {{.air.Time}} ({{ .air.TimeSince }} ago)</div>
-              </article>
-            </div>
-          </div>
+          <article class="tile is-child notification is-primary ">
+            <p class="title">5°C</p>
+            <p class="subtitle">water temperature </p>
+          </article>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-light ">
+            <p class="title">{{.air.Pressure}} hPa</p>
+            <p class="subtitle">pressure</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="tile is-ancestor">
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-warning ">
+            <p class="title">{{.air.Humidity}}%</p>
+            <p class="subtitle">humidity</p>
+          </article>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-success ">
+            <p class="title">{{.air.Dewpoint}}</p>
+            <p class="subtitle">dewpoint</p>
+          </article>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-info ">
+            <p class="title">0"</p>
+            <p class="subtitle">rain</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="tile is-ancestor">
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-link ">
+            <p class="title">3 mph</p>
+            <p class="subtitle">wind speed</p>
+          </article>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-danger ">
+            <p class="title">NE</p>
+            <p class="subtitle">wind direction</p>
+          </article>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-dark ">
+            <p class="title">6 mph</p>
+            <p class="subtitle">gusts</p>
+          </article>
+        </div>
+      </div>
+      <div class="content">last updated {{.air.Time}} ({{ .air.TimeSince }} ago)</div>
         </div>
       </div>
     </div>
-
-    
   </body>
 </html>
