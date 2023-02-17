@@ -12,7 +12,7 @@
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <article class="tile is-child notification is-primary ">
-            <p class="title">{{.air.Temperature}}°C</p>
+            <p class="title">{{.air.T}}°F</p>
             <p class="subtitle">temperature</p>
           </article>
         </div>
@@ -24,7 +24,7 @@
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification is-light ">
-            <p class="title">{{.air.Pressure}} hPa</p>
+            <p class="title">{{.air.P}} hPa</p>
             <p class="subtitle">pressure</p>
           </article>
         </div>
@@ -33,20 +33,20 @@
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <article class="tile is-child notification is-warning ">
-            <p class="title">{{.air.Humidity}}%</p>
+            <p class="title">{{.air.H}}%</p>
             <p class="subtitle">humidity</p>
           </article>
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification is-success ">
-            <p class="title">{{.air.Dewpoint}}</p>
+            <p class="title">{{.air.D}}</p>
             <p class="subtitle">dewpoint</p>
           </article>
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification is-info ">
-            <p class="title">0"</p>
-            <p class="subtitle">rain</p>
+            <p class="title">{{.rain.T}}"</p>
+            <p class="subtitle">rainfall in 24h</p>
           </article>
         </div>
       </div>
@@ -54,24 +54,25 @@
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <article class="tile is-child notification is-link ">
-            <p class="title">3 mph</p>
+            <p class="title">{{ .wind.S }} mph</p>
             <p class="subtitle">wind speed</p>
           </article>
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification is-danger ">
-            <p class="title">NE</p>
+            <p class="title">{{ .wind.Direction }}° </p>
             <p class="subtitle">wind direction</p>
           </article>
         </div>
         <div class="tile is-parent">
           <article class="tile is-child notification is-dark ">
-            <p class="title">6 mph</p>
+            <p class="title">{{ .wind.G }} mph</p>
             <p class="subtitle">gusts</p>
           </article>
         </div>
       </div>
-      <div class="content">last updated {{.air.Time}} ({{ .air.TimeSince }} ago)</div>
+      <div class="content">last updated air {{.air.Time}} ({{ .air.TimeSince }} ago)</div>
+      <div class="content">last updated wind {{.wind.Time}} ({{ .wind.TimeSince }} ago)</div>
         </div>
       </div>
     </div>
