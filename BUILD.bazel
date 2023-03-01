@@ -7,12 +7,16 @@ gazelle(name = "gazelle")
 go_library(
     name = "weather_lib",
     srcs = ["main.go"],
-    embedsrcs = ["templates/index.html.tmpl"],
+    embedsrcs = [
+        "templates/index.html.tmpl",
+        "templates/history.html.tmpl",
+        "templates/nav.html.tmpl",
+    ],
     importpath = "github.com/scottshuffler/weather",
     visibility = ["//visibility:private"],
     deps = [
-        "@com_github_gin_gonic_gin//:go_default_library",
-        "@com_github_jackc_pgx_v5//:go_default_library",
+        "@com_github_gin_gonic_gin//:gin",
+        "@com_github_jackc_pgx_v5//:pgx",
     ],
 )
 

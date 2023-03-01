@@ -70,6 +70,10 @@ func main() {
 		})
 	})
 
+	r.GET("/history", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "history.html.tmpl", gin.H{})
+	})
+
 	r.Run(":8080")
 }
 
@@ -144,7 +148,6 @@ func getSomeWind() Wind {
 	wind.Time = wind.Timestamp.In(loc).Format(time.UnixDate)
 	wind.TimeSince = time.Now().Sub(wind.Timestamp).Round(1 * time.Second)
 
-	//  / 1.609
 	s := (wind.Speed / 1.609)
 	wind.S = math.Ceil(float64(s)*100) / 100
 
