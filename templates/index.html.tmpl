@@ -1,17 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@next/css/pico.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@next/css/pico.colors.min.css"
+    />
+    <script
+      src="https://unpkg.com/htmx.org@1.9.9"
+      integrity="sha384-QFjmbokDn2DjBjq+fM+8LUIVrAgqcNW2s0PjAxHETgRn9l4fvX31ZxDxvwQnyMOX"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      article {
+        margin: 0px;
+        padding: 10px 5px;
+      }
+      .parent {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-column-gap: 15px;
+        grid-row-gap: 15px;
+      }
+      .div1 {
+        grid-area: 1 / 1 / 2 / 2;
+      }
+      .div2 {
+        grid-area: 1 / 2 / 2 / 3;
+      }
+      .div3 {
+        grid-area: 1 / 3 / 2 / 4;
+      }
+      .div4 {
+        grid-area: 2 / 1 / 3 / 2;
+      }
+      .div5 {
+        grid-area: 2 / 2 / 3 / 3;
+      }
+      .div6 {
+        grid-area: 2 / 3 / 3 / 4;
+      }
+      .div7 {
+        grid-area: 3 / 1 / 4 / 2;
+      }
+      .div8 {
+        grid-area: 3 / 2 / 4 / 3;
+      }
+      .div9 {
+        grid-area: 3 / 3 / 4 / 4;
+      }
+    </style>
+    <title>hrl weather</title>
   </head>
   <body>
-  {{ template "Nav" }}
-  <section class="section">
+    <main class="container">
+      {{ template "Nav" }}
+      <div class="parent">
+        <div class="div1">
+          <article>
+            <hgroup>
+              <h2>{{.data.Temperature}}°F</h2>
+              <p class="pico-color-pink-500">temperature</p>
+            </hgroup>
+          </article>
+        </div>
+        <div class="div2">
+          <article>
+            <hgroup>
+              <h2>{{.data.Humidity}}%</h2>
+              <h3 class="pico-color-violet-500">humidity</h3>
+            </hgroup>
+          </article>
+        </div>
+        <div class="div3">
+          <article>
+            <hgroup>
+              <h2>{{.data.Pressure}} hPa</h2>
+              <h3 class="pico-color-green-500">pressure</h3>
+            </hgroup>
+          </article>
+        </div>
+        <div class="div4">
+          <article>
+            <hgroup>
+              <h2>{{.data.Dewpoint}}</h2>
+              <h3 class="pico-color-cyan-500">dewpoint</h3>
+            </hgroup>
+          </article>
+        </div>
+
+        <div class="div5">
+          <article>
+            <hgroup>
+              <h2>{{.data.WindSpeed}} mph</h2>
+              <h3 class="pico-color-amber-500">wind speed</h3>
+            </hgroup>
+          </article>
+        </div>
+        <div class="div6">
+          <article>
+            <hgroup>
+              <h2>{{.data.Gusts}} mph</h2>
+              <h3 class="pico-color-pumpkin-500">wind gusts</h3>
+            </hgroup>
+          </article>
+        </div>
+        <div class="div7">
+          <article>
+            <hgroup>
+              <h2>{{.data.WindDirection}}</h2>
+              <h3 class="pico-color-blue-500">wind direction</h3>
+            </hgroup>
+          </article>
+        </div>
+        <div class="div8">
+          <article>
+            <hgroup>
+              <h2>42°F</h2>
+              <h3 class="pico-color-indigo-500">water temperature</h3>
+            </hgroup>
+          </article>
+        </div>
+        <div class="div9">
+          <article>
+            <hgroup>
+              <h2>{{.data.Rain}}"</h2>
+              <h3 class="pico-color-red-500">rainfall in last 24h</h3>
+            </hgroup>
+          </article>
+        </div>
+      </div>
+    </main>
+    <!-- <section class="section">
 
     <div class="container" style="margin-top: 20px">
-
       <div class="tile is-ancestor">
         <div class="tile is-parent">
           <article class="tile is-child notification is-primary ">
@@ -79,6 +208,6 @@
         </div>
       </div>
     </div>
-    </section>
+    </section> -->
   </body>
 </html>
