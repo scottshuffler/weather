@@ -65,7 +65,7 @@ func main() {
 		c.HTML(http.StatusOK, "history.html.tmpl", gin.H{})
 	})
 
-	r.Run(":8081")
+	r.Run(":8080")
 }
 
 func getSomeData() Data {
