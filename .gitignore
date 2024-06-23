@@ -3,3 +3,4 @@ bazel-weather
 bazel-out
 bazel-testlogs
 weather
+*/**.env
