@@ -1,84 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
     />
+    <script src="/assets/htmx.min.js"></script>
+    <style>
+      article {
+        margin: 0px;
+        padding: 10px 5px;
+      }
+    </style>
+    <title>hrl weather</title>
   </head>
   <body>
-  {{ template "Nav" }}
-  <section class="section">
-
-    <div class="container" style="margin-top: 20px">
-
-      <div class="tile is-ancestor">
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-primary ">
-            <p class="title">{{.air.T}}°F</p>
-            <p class="subtitle">temperature</p>
+    <main
+      class="container"
+      hx-get="/"
+      hx-trigger="load delay:10s"
+      hx-swap="outerHTML"
+    >
+      <div class="grid">
+        <div>
+          <article>
+            <h2 style="padding: 40px 20px 0px 40px">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-temperature-sun"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M4 13.5a4 4 0 1 0 4 0v-8.5a2 2 0 1 0 -4 0v8.5" />
+                <path d="M4 9h4" />
+                <path d="M13 16a4 4 0 1 0 0 -8a4.07 4.07 0 0 0 -1 .124" />
+                <path d="M13 3v1" />
+                <path d="M21 12h1" />
+                <path d="M13 20v1" />
+                <path d="M19.4 5.6l-.7 .7" />
+                <path d="M18.7 17.7l.7 .7" />
+              </svg>
+            </h2>
+            <h4 style="padding: 0px 20px 0px 40px">{{.data.Temperature}}°F</h4>
+            <div style="padding: 0px 20px 0px 40px">
+              <p>with {{.data.Humidity}}% humidity</p>
+              <!-- <p>{{.data.Pressure}} hPa</p>
+              <p>{{.data.Dewpoint}}</p> -->
+            </div>
           </article>
         </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-primary ">
-            <p class="title">5°C</p>
-            <p class="subtitle">water temperature </p>
+        <div>
+          <article>
+            <h2 style="padding: 40px 20px 0px 40px">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-wind"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M5 8h8.5a2.5 2.5 0 1 0 -2.34 -3.24" />
+                <path d="M3 12h15.5a2.5 2.5 0 1 1 -2.34 3.24" />
+                <path d="M4 16h5.5a2.5 2.5 0 1 1 -2.34 3.24" />
+              </svg>
+            </h2>
+            <h4 style="padding: 0px 20px 0px 40px">
+              {{.data.WindDirection}} {{.data.WindSpeed}} mph
+            </h4>
+            <div style="padding: 0px 20px 0px 40px">
+              <p></p>
+              <p>with gusts up to {{.data.Gusts}} mph</p>
+            </div>
           </article>
         </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-light ">
-            <p class="title">{{.air.P}} hPa</p>
-            <p class="subtitle">pressure</p>
+        <div>
+          <article>
+            <h2 style="padding: 40px 20px 0px 40px">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="icon icon-tabler icons-tabler-outline icon-tabler-umbrella"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M4 12a8 8 0 0 1 16 0z" />
+                <path d="M12 12v6a2 2 0 0 0 4 0" />
+              </svg>
+            </h2>
+            <h4 style="padding: 0px 20px 0px 40px">{{.data.Rain}}" of rain</h4>
+            <div style="padding: 0px 20px 0px 40px">
+              <p>past 24 hours</p>
+            </div>
           </article>
         </div>
       </div>
-
-      <div class="tile is-ancestor">
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-warning ">
-            <p class="title">{{.air.H}}%</p>
-            <p class="subtitle">humidity</p>
-          </article>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-success ">
-            <p class="title">{{.air.D}}</p>
-            <p class="subtitle">dewpoint</p>
-          </article>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-info ">
-            <p class="title">{{.rain.T}}"</p>
-            <p class="subtitle">rainfall in 24h</p>
-          </article>
-        </div>
-      </div>
-
-      <div class="tile is-ancestor">
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-link ">
-            <p class="title">{{ .wind.S }} mph</p>
-            <p class="subtitle">wind speed</p>
-          </article>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-danger ">
-            <p class="title">{{ .wind.Direction }}° </p>
-            <p class="subtitle">wind direction</p>
-          </article>
-        </div>
-        <div class="tile is-parent">
-          <article class="tile is-child notification is-dark ">
-            <p class="title">{{ .wind.G }} mph</p>
-            <p class="subtitle">gusts</p>
-          </article>
-        </div>
-      </div>
-      <div class="content">last updated air {{.air.Time}} ({{ .air.TimeSince }} ago)</div>
-      <div class="content">last updated wind {{.wind.Time}} ({{ .wind.TimeSince }} ago)</div>
-        </div>
-      </div>
-    </div>
-    </section>
+    </main>
   </body>
 </html>

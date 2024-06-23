@@ -1,7 +1,6 @@
-load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
-load("@bazel_gazelle//:def.bzl", "gazelle")
+load("@gazelle//:def.bzl", "gazelle")
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
 
-# gazelle:prefix github.com/scottshuffler/weather
 gazelle(name = "gazelle")
 
 go_library(
@@ -9,8 +8,7 @@ go_library(
     srcs = ["main.go"],
     embedsrcs = [
         "templates/index.html.tmpl",
-        "templates/history.html.tmpl",
-        "templates/nav.html.tmpl",
+        "assets/htmx.min.js",
     ],
     importpath = "github.com/scottshuffler/weather",
     visibility = ["//visibility:private"],
