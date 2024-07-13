@@ -51,11 +51,50 @@ func main() {
 
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html.tmpl", gin.H{
-			"data": getSomeData(),
+			"data":  getSomeData(),
+			"gusts": getGusts(),
+			"rain":  getRain(),
 		})
 	})
 
 	r.Run(":8080")
+}
+
+func getGusts() string {
+	conn, err := pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
+		os.Exit(1)
+	}
+	defer conn.Close(context.Background())
+	var gusts float32
+	err = conn.QueryRow(context.Background(), `select MAX(gusts) from data WHERE timestamp BETWEEN NOW() - INTERVAL '24 HOURS' AND NOW();`).Scan(
+		&gusts,
+	)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "QueryRow failed: %v\n", err)
+		os.Exit(1)
+	}
+	return fmt.Sprintf("%.2f", gusts)
+}
+
+func getRain() string {
+	conn, err := pgx.Connect(context.Background(), os.Getenv("DATABASE_URL"))
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
+		os.Exit(1)
+	}
+	defer conn.Close(context.Background())
+	var rain float32
+	err = conn.QueryRow(context.Background(), `select SUM(rain) from data WHERE timestamp BETWEEN NOW() - INTERVAL '24 HOURS' AND NOW();`).Scan(
+		&rain,
+	)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "QueryRow failed: %v\n", err)
+		os.Exit(1)
+	}
+
+	return fmt.Sprintf("%.2f", (rain / 25.4))
 }
 
 func getSomeData() Data {
@@ -109,12 +148,12 @@ func getSomeData() Data {
 	d.Dewpoint = fmt.Sprintf("%.2f", math.Ceil(float64(dewpoint)*100)/100)
 	d.Pressure = fmt.Sprintf("%.2f", math.Ceil(float64(pressure)*100)/100)
 	d.WindSpeed = fmt.Sprintf("%.2f", windSpeed)
-	d.Gusts = fmt.Sprintf("%.2f", gusts)
+	// d.Gusts = fmt.Sprintf("%.2f", gusts)
 	d.WindDirection = windDirection
-	d.Rain = fmt.Sprintf("%.2f", rain)
+	// d.Rain = fmt.Sprintf("%.2f", rain)
 	d.Lux = round(lux)
 	d.Time = timestamp.In(loc).Format(time.UnixDate)
-	d.TimeSince = time.Now().Sub(timestamp).Round(1 * time.Second)
+	d.TimeSince = time.Since(timestamp).Round(1 * time.Second)
 
 	return *d
 }
