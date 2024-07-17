@@ -20,9 +20,13 @@
       p {
         color: #fff;
       }
+      square {
+        display: flex;
+      }
       article {
         margin: 0px;
         padding: 10px 5px;
+        flex: 1;
       }
     </style>
     <title>hrl weather</title>
@@ -35,7 +39,7 @@
       hx-swap="outerHTML"
     >
       <div class="grid">
-        <div>
+        <div class="square">
           <article style="background-color: #615695">
             <h2 style="padding: 40px 20px 0px 40px">
               <svg
@@ -69,7 +73,7 @@
             </div>
           </article>
         </div>
-        <div>
+        <div class="square">
           <article style="background-color: #ad617a">
             <h2 style="padding: 40px 20px 0px 40px">
               <svg
@@ -99,7 +103,7 @@
             </div>
           </article>
         </div>
-        <div>
+        <div class="square">
           <article style="background-color: #c27354; color: #fff">
             <h2 style="padding: 40px 20px 0px 40px">
               <svg
@@ -125,7 +129,7 @@
             </div>
           </article>
         </div>
-        <div>
+        <div class="square">
           <article style="background-color: #ba9f50">
             <h2 style="padding: 40px 20px 0px 40px">
               <svg
