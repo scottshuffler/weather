@@ -10,6 +10,16 @@
     />
     <script src="/assets/htmx.min.js"></script>
     <style>
+      html {
+        background-color: #2a282b;
+        color: #fff;
+      }
+      h4 {
+        color: #fff;
+      }
+      p {
+        color: #fff;
+      }
       article {
         margin: 0px;
         padding: 10px 5px;
@@ -26,7 +36,7 @@
     >
       <div class="grid">
         <div>
-          <article>
+          <article style="background-color: #615695">
             <h2 style="padding: 40px 20px 0px 40px">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +70,7 @@
           </article>
         </div>
         <div>
-          <article>
+          <article style="background-color: #ad617a">
             <h2 style="padding: 40px 20px 0px 40px">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +100,7 @@
           </article>
         </div>
         <div>
-          <article>
+          <article style="background-color: #c27354; color: #fff">
             <h2 style="padding: 40px 20px 0px 40px">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +126,7 @@
           </article>
         </div>
         <div>
-          <article>
+          <article style="background-color: #ba9f50">
             <h2 style="padding: 40px 20px 0px 40px">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +163,7 @@
       </div>
 
       <small style="padding: 20px 0px 0px 0px">
-        updated {{.data.TimeSince}} ago
+        <p>updated {{.data.TimeSince}} ago</p>
       </small>
     </main>
   </body>
